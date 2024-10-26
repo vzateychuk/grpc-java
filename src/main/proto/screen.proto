@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_package = "vez.grpc";
+option java_multiple_files = true;
+
+message Screen {
+  message Resolution {
+    uint32 width = 1;
+    uint32 height = 2;
+  }
+
+  enum Panel {
+    IPS = 0;
+    OLED = 1;
+  }
+
+  float size = 1;
+  Resolution resolution = 2;
+  Panel panel = 3;
+}

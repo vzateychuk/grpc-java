@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_package = "vez.grpc";
+option java_multiple_files = true;
+
+message Cpu {
+    string brand = 1;
+    string name = 2;
+}

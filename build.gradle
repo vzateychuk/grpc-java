@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+
+    id "com.google.protobuf" version "0.9.4"
+}
+
+group 'vez.grpc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.protobuf:protobuf-java:3.21.1'
+    implementation 'io.grpc:grpc-protobuf:1.42.1'
+    implementation 'io.grpc:grpc-stub:1.42.1'
+    implementation 'io.grpc:grpc-netty-shaded:1.42.1'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+        resources {
+            srcDirs 'src/main/resources'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.21.1'
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.42.1'
+        }
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                grpc {}
+            }
+        }
+    }
+}

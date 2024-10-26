@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_package = "vez.grpc";
+option java_multiple_files = true;
+
+message Keyboard {
+    enum Layout {
+        QWERTY = 0;
+        DVORAK = 1;
+    }
+    Layout layout = 1;
+    bool backlit = 2;
+}

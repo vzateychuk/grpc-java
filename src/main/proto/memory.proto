@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_package = "vez.grpc";
+option java_multiple_files = true;
+
+message Memory {
+  enum Unit {
+    GB = 0;
+    MB = 1;
+    KB = 2;
+  }
+  uint64 value = 1;
+  Unit unit = 2;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+option java_package = "vez.grpc";
+option java_multiple_files = true;
+
+import "memory.proto";
+
+message Storage {
+  enum Driver {
+    HDD = 0;
+    SSD = 1;
+  }
+
+  Driver driver = 1;
+  Memory memory = 3;
+}
