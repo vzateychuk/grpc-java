@@ -33,17 +33,17 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
         if (id.isEmpty()) {
             logger.warning("ID is empty, generatring a new ID...");
             uuid = UUID.randomUUID();
-        }
-
-        try {
-            uuid = UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-            respObserver.onError(
-                    Status.INVALID_ARGUMENT
-                            .withDescription("Invalid UUID: " + e.getMessage())
-                            .asRuntimeException()
-            );
-            return;
+        } else {
+            try {
+                uuid = UUID.fromString(id);
+            } catch (IllegalArgumentException e) {
+                respObserver.onError(
+                        Status.INVALID_ARGUMENT
+                                .withDescription("Invalid UUID: " + e.getMessage())
+                                .asRuntimeException()
+                );
+                return;
+            }
         }
 
         Laptop other = Laptop.newBuilder().setId(uuid.toString()).build();

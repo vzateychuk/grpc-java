@@ -3,6 +3,7 @@ package grpc.java.sample;
 import vez.grpc.*;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class Generator {
 
@@ -69,6 +70,7 @@ public class Generator {
 
     public Laptop NewLaptop() {
         return Laptop.newBuilder()
+                .setId(UUID.randomUUID().toString())
                 .setBrand(randomBrand())
                 .setName(randomLaptopName())
                 .setKeyboard(NewKeyboard())
